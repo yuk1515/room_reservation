@@ -1,0 +1,2 @@
+module YoyakusHelper
+end

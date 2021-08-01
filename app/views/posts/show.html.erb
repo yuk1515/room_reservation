@@ -1,0 +1,61 @@
+
+
+<div class="main posts-show">
+  <div class="container">
+    <div class="posts-show-item">
+    <div class="post-user-name">
+      <img src="<%= "/user_images/#{@user.image_name}"%>">
+      <%= link_to(@user.name,"/users/#{@user.id}") %>
+    </div>
+      <div class = room-image>
+        <img src="<%= "/post_images/#{@post.photo}" %>">
+      </div>
+      <p> 住所 </p>
+      <p>
+        <%= @post.address %>
+      </p>
+      <p> 価格　</p>
+      <p>
+        <%= @post.price %> 円/1day
+      </p>
+      <p>部屋情報　</p>
+      <p>
+        <%= @post.content %>
+      </p>
+
+      <div class="post-time">
+        <%= @post.created_at %>
+      </div>
+
+      <% if @post.user_id == @current_user.id%>
+      <div class="post-menus">
+        <%= link_to("編集", "/posts/#{@post.id}/edit") %>
+        <%= link_to("削除", "/posts/#{@post.id}/destroy" , {method:"post"})%>
+      </div>
+      <% end %>
+
+    </div> 
+  <% if Reservation.find_by(user_id: @current_user.id, post_id: @post.id) %>
+
+    予約済み　 (USER画面で予約済み履歴が確認できます)
+
+
+
+  <% else %>
+ <p>予約フォーム</p>
+    <%= form_tag("/reservations/#{@post.id}/create",{method:"post"}) do %>
+    <p>開始日</p>
+    <input name ="start_date" type="date"
+    >
+    <p>終了日</p>
+    <input name ="fin_date" type="date" >
+    <p>人数</p>
+    <input name ="num_people" type="number" >
+    
+    <input type="submit" value="予約する">
+    <% end %>
+  <% end %>
+  
+    </div>
+
+</div>

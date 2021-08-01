@@ -1,0 +1,20 @@
+<div class="main posts-new">
+  <div class="container">
+    <h1 class="form-heading">新規宿泊施設登録</h1>
+    <%= form_tag("/posts/create",{multipart: true}) do %>
+    <div class="form">
+      <div class="form-body">
+      <p>住所</p>
+      <input name="address" value="<%= @post.address %>">
+      <p>価格</p>
+      <input name="price" value="<%= @post.price %>">
+      <p>部屋写真</p>
+      <input name="image" type="file">
+       <p>宿泊施設情報</p>
+        <textarea name ="content"></textarea>
+        <input type="submit" value="投稿">
+      </div>
+    </div>
+    <% end %>
+  </div>
+</div>

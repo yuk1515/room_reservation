@@ -1,0 +1,48 @@
+<div class="main user-show">
+  <div class="container">
+    <div class="user">
+    <img src="<%= "/user_images/#{@user.image_name}" %>">
+      <h2><%= @user.name %></h2>
+      <p><%= @user.email %></p>
+      <% if @user.id == @current_user.id %>
+        <%= link_to("編集", "/users/#{@user.id}/edit") %>
+      <% end %>
+    </div>
+    
+    <ul class="user-tabs">
+      <li><%= link_to("登録している宿泊情報", "/users/#{@user.id}") %></li>
+      <li class="active"><%= link_to("予約済みの部屋", "/users/#{@user.id}/reservations") %></li>
+    </ul>
+    
+
+    <% @reservations.each do |reservation| %>
+      <% post = Post.find_by(id: reservation.post_id) %>
+      
+      <div class="posts-index-item">
+        <div class="post-left">
+        <img src="<%= "/user_images/#{post.user.image_name}" %>">
+        </div>
+        <div class="post-right">
+          <div class="post-user-name">
+            <%= link_to(post.user.name, "/users/#{post.user.id}") %>
+          </div>
+          <%= link_to(post.content, "/posts/#{post.id}") %>
+        </div>
+        価格<%=post.price %>円
+        人数<%=reservation.num_people%>人
+
+        予約日　<%= reservation.start_date.year %>年
+               <%= reservation.start_date.month %>月
+               <%= reservation.start_date.day %>日から
+               <%= reservation.fin_date.year %>年
+               <%= reservation.fin_date.month %>月
+               <%= reservation.fin_date.day %>日まで
+
+
+        宿泊日数<%= ((reservation.fin_date - reservation.start_date) /86400) .to_i %>日間
+
+        合計金額<%= (post.price * reservation.num_people) * ((reservation.fin_date - reservation.start_date) /86400).to_i %>円
+      </div>
+    <% end %>
+  </div>
+</div>

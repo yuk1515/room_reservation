@@ -1,0 +1,28 @@
+<h3>予約フォーム</h3>
+ 
+<%= form_for @yoyaku do |f| %>
+  <table>
+    <tr>
+      <th><%= f.label :date ,"開始日" %></th>
+      <td><%= f.date_field :start_date %></td>
+    </tr>
+
+    <tr>
+      <th><%= f.label :date ,"終了日" %></th>
+      <td><%= f.date_field :finish_date %></td>
+    </tr>
+
+    <tr>
+      <th><%= f.label :number ,"人数" %></th>
+      <td><%= f.number_field :number_of_people %></td>
+    </tr>
+
+  </table>
+
+  <div>
+    <ul>
+      <li><%= f.submit "予約をする"%></li>
+      <li><%= link_to "予約一覧", :yoyakus%></li>
+    </ul>
+  </div>
+<% end %>
