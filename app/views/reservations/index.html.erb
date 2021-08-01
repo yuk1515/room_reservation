@@ -1,0 +1,11 @@
+
+<% @reservations.each do |reservation| %>
+
+    USER <td> <%= reservation.user_id %></td>
+    開始日（<td><%= reservation.start_date %></td>）
+    終了日（<td><%= reservation.fin_date %></td>）
+    <td><%= reservation.num_people %></td>人
+    
+
+
+<% end %>

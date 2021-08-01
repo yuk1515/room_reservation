@@ -1,0 +1,25 @@
+<h3>予約情報一覧 YOYAKU<h3>
+
+<table>
+ <thead>
+   <tr>
+     <th>開始日</th>
+     <th>終了日</th>
+     <th>宿泊人数</th>
+     <th>投稿者(User_id)</th>
+   </tr> 
+ </thead>
+
+ <tbody>
+ <% @yoyakus.each do |yoyaku| %>
+   <tr>
+     <td><%= yoyaku.start_date %></td>
+     <td><%= yoyaku.finish_date %></td>
+     <td><%= yoyaku.number_of_people %></td>
+     <td><%= yoyaku.user_id %></td>
+     <td><%= yoyaku.post_id %></td>
+   </tr>
+ <% end %>
+ </tbody>
+</table>
+

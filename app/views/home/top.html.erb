@@ -1,0 +1,12 @@
+<div class="main top-main">
+    <div class="top-message">
+        <h4>お探しの宿泊地はどこですか</h4>
+        <div class = "search-form">
+        <%= form_with url: search_path,method: :get,local: true do |f| %>
+        <%= f.text_field :keyword,value: @keyword %>
+        <%=f.submit "検索"%>
+        <% end %>
+      </div>
+
+    </div>
+</div>
